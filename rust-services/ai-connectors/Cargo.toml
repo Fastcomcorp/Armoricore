@@ -1,0 +1,39 @@
+[package]
+name = "ai-connectors"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[lib]
+name = "ai_connectors"
+path = "src/lib.rs"
+
+[dependencies]
+# Workspace dependencies
+tokio = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+
+# HTTP client
+reqwest = { workspace = true, features = ["json", "multipart"] }
+
+# Async traits
+async-trait = "0.1"
+
+# Error handling
+thiserror = "1.0"
+
+# Optional: OpenAI SDK (if available)
+# openai = "0.1"
+
+[features]
+default = []
+openai = []
+anthropic = []
+azure-openai = []
+google-ai = []
+

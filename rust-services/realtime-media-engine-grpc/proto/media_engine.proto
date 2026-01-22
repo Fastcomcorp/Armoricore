@@ -1,0 +1,287 @@
+syntax = "proto3";
+
+package armoricore.media_engine;
+
+// Media Engine Service for ArcRTC
+service MediaEngine {
+    // Stream management
+    rpc CreateStream(CreateStreamRequest) returns (CreateStreamResponse);
+    rpc StopStream(StopStreamRequest) returns (StopStreamResponse);
+    rpc GetStream(GetStreamRequest) returns (GetStreamResponse);
+    
+    // Packet routing
+    rpc RoutePacket(RoutePacketRequest) returns (RoutePacketResponse);
+    
+    // Audio processing
+    rpc EncodeAudio(EncodeAudioRequest) returns (EncodeAudioResponse);
+    rpc DecodeAudio(DecodeAudioRequest) returns (DecodeAudioResponse);
+    
+    // Stream control
+    rpc UpdateStreamState(UpdateStreamStateRequest) returns (UpdateStreamStateResponse);
+    rpc GetStreamStats(GetStreamStatsRequest) returns (GetStreamStatsResponse);
+    
+    // RFC 6184 - H.264 Payload Format
+    rpc PacketizeH264(PacketizeH264Request) returns (PacketizeH264Response);
+    rpc DepacketizeH264(DepacketizeH264Request) returns (DepacketizeH264Response);
+    
+    // draft-ietf-avtcore-rtp-vvc - VVC Payload Format
+    rpc PacketizeVVC(PacketizeVVCRequest) returns (PacketizeVVCResponse);
+    rpc DepacketizeVVC(DepacketizeVVCRequest) returns (DepacketizeVVCResponse);
+    
+    // RFC 9607 - SCIP Payload Format
+    rpc PacketizeSCIP(PacketizeSCIPRequest) returns (PacketizeSCIPResponse);
+    rpc DepacketizeSCIP(DepacketizeSCIPRequest) returns (DepacketizeSCIPResponse);
+    
+    // RFC 4588 - RTP Retransmission
+    rpc StorePacketForRetransmission(StorePacketRequest) returns (StorePacketResponse);
+    rpc ProcessRetransmissionRequest(RetransmissionRequest) returns (RetransmissionResponse);
+    rpc DetectMissingSequences(DetectMissingRequest) returns (DetectMissingResponse);
+}
+
+// Stream configuration
+message StreamConfig {
+    string user_id = 1;
+    MediaType media_type = 2;
+    uint32 ssrc = 3;
+    uint32 payload_type = 4;
+    string codec = 5;
+    uint32 bitrate = 6;
+    bool encryption_enabled = 7;
+}
+
+enum MediaType {
+    AUDIO = 0;
+    VIDEO = 1;
+}
+
+// Create stream request
+message CreateStreamRequest {
+    StreamConfig config = 1;
+}
+
+message CreateStreamResponse {
+    string stream_id = 1;
+    bool success = 2;
+    string error = 3;
+}
+
+// Stop stream request
+message StopStreamRequest {
+    string stream_id = 1;
+}
+
+message StopStreamResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+// Get stream request
+message GetStreamRequest {
+    string stream_id = 1;
+}
+
+message GetStreamResponse {
+    bool exists = 1;
+    StreamConfig config = 2;
+    StreamState state = 3;
+}
+
+enum StreamState {
+    INITIALIZING = 0;
+    ACTIVE = 1;
+    PAUSED = 2;
+    STOPPED = 3;
+    ERROR = 4;
+}
+
+// Route packet request
+message RoutePacketRequest {
+    string stream_id = 1;
+    bytes rtp_packet = 2;
+}
+
+message RoutePacketResponse {
+    bool success = 1;
+    string destination = 2;  // Empty string if no destination
+    string error = 3;
+}
+
+// Encode audio request
+message EncodeAudioRequest {
+    string stream_id = 1;
+    repeated float samples = 2;
+    uint32 sample_rate = 3;
+    uint32 channels = 4;
+    uint32 timestamp = 5;
+}
+
+message EncodeAudioResponse {
+    bool success = 1;
+    bytes encoded_data = 2;
+    string error = 3;
+}
+
+// Decode audio request
+message DecodeAudioRequest {
+    string stream_id = 1;
+    bytes encoded_data = 2;
+    uint32 timestamp = 3;
+}
+
+message DecodeAudioResponse {
+    bool success = 1;
+    repeated float samples = 2;
+    uint32 sample_rate = 3;
+    uint32 channels = 4;
+    string error = 5;
+}
+
+// Update stream state request
+message UpdateStreamStateRequest {
+    string stream_id = 1;
+    StreamState new_state = 2;
+}
+
+message UpdateStreamStateResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+// Get stream stats request
+message GetStreamStatsRequest {
+    string stream_id = 1;
+}
+
+message GetStreamStatsResponse {
+    bool exists = 1;
+    StreamStats stats = 2;
+}
+
+message StreamStats {
+    uint64 packets_sent = 1;
+    uint64 packets_received = 2;
+    uint64 bytes_sent = 3;
+    uint64 bytes_received = 4;
+    uint64 packets_lost = 5;
+    double jitter_ms = 6;
+    double rtt_ms = 7;
+}
+
+// RFC 6184 - H.264 Payload Format
+message PacketizeH264Request {
+    bytes nal_unit = 1;
+    uint32 timestamp = 2;
+    uint32 ssrc = 3;
+    uint32 payload_type = 4;
+    uint32 max_payload_size = 5;
+}
+
+message PacketizeH264Response {
+    bool success = 1;
+    repeated bytes rtp_packets = 2;
+    string error = 3;
+}
+
+message DepacketizeH264Request {
+    repeated bytes rtp_packets = 1;
+}
+
+message DepacketizeH264Response {
+    bool success = 1;
+    repeated bytes nal_units = 2;
+    string error = 3;
+}
+
+// draft-ietf-avtcore-rtp-vvc - VVC Payload Format
+message PacketizeVVCRequest {
+    bytes nal_unit = 1;
+    uint32 timestamp = 2;
+    uint32 ssrc = 3;
+    uint32 payload_type = 4;
+    uint32 max_payload_size = 5;
+}
+
+message PacketizeVVCResponse {
+    bool success = 1;
+    repeated bytes rtp_packets = 2;
+    string error = 3;
+}
+
+message DepacketizeVVCRequest {
+    repeated bytes rtp_packets = 1;
+}
+
+message DepacketizeVVCResponse {
+    bool success = 1;
+    repeated bytes nal_units = 2;
+    string error = 3;
+}
+
+// RFC 9607 - SCIP Payload Format
+message PacketizeSCIPRequest {
+    bytes payload = 1;
+    uint32 timestamp = 2;
+    uint32 ssrc = 3;
+    uint32 payload_type = 4;
+    ScipPacketType packet_type = 5;
+}
+
+enum ScipPacketType {
+    SCIP_AUDIO = 0;
+    SCIP_VIDEO = 1;
+    SCIP_CONTROL = 2;
+    SCIP_FEC = 3;
+}
+
+message PacketizeSCIPResponse {
+    bool success = 1;
+    bytes rtp_packet = 2;
+    string error = 3;
+}
+
+message DepacketizeSCIPRequest {
+    bytes rtp_packet = 1;
+}
+
+message DepacketizeSCIPResponse {
+    bool success = 1;
+    bytes payload = 2;
+    ScipPacketType packet_type = 3;
+    uint32 timestamp = 4;
+    string error = 5;
+}
+
+// RFC 4588 - RTP Retransmission
+message StorePacketRequest {
+    bytes rtp_packet = 1;
+    uint32 max_buffer_size = 2;
+    uint64 packet_timeout_sec = 3;
+    uint32 retransmission_payload_type = 4;
+}
+
+message StorePacketResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+message RetransmissionRequest {
+    uint32 ssrc = 1;
+    repeated uint32 sequence_numbers = 2;
+}
+
+message RetransmissionResponse {
+    bool success = 1;
+    repeated bytes retransmission_packets = 2;
+    string error = 3;
+}
+
+message DetectMissingRequest {
+    uint32 expected_sequence = 1;
+}
+
+message DetectMissingResponse {
+    bool success = 1;
+    repeated uint32 missing_sequences = 2;
+    string error = 3;
+}
+

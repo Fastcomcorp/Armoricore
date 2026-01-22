@@ -1,0 +1,53 @@
+# Copyright 2025 Fastcomcorp
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Example configuration for room and stream authorization
+# Copy relevant sections to your config files (dev.exs, prod.exs, etc.)
+
+import Config
+
+# Room Authorization Configuration
+# =================================
+
+# Allow room access by default (for backward compatibility)
+# Set to false for strict mode (requires explicit permission for all rooms)
+config :armoricore_realtime, :allow_room_access_by_default, true
+
+# Public room patterns (rooms that are always accessible)
+# Use "*" as wildcard: "public-*" matches "public-room-1", "public-room-2", etc.
+config :armoricore_realtime, :public_room_patterns, [
+  "lobby",
+  "public-*",
+  "general"
+]
+
+# Restricted room patterns (rooms that require explicit permission)
+# These rooms will be denied even if allow_room_access_by_default is true
+config :armoricore_realtime, :restricted_room_patterns, [
+  "admin-*",
+  "private-*"
+]
+
+# Example: Strict mode (deny by default, require explicit permission)
+# config :armoricore_realtime, :allow_room_access_by_default, false
+# config :armoricore_realtime, :public_room_patterns, [
+#   "lobby",
+#   "public-room-1"
+# ]
+
+# Stream Authorization Configuration
+# ===================================
+# Streams are public by default (for live streaming)
+# Private streams can be implemented by adding stream access checks
+

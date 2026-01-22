@@ -1,0 +1,61 @@
+[package]
+name = "realtime-media-engine"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Real-time media engine for ArcRTC protocol with RTP/SRTP support"
+
+[lib]
+name = "realtime_media_engine"
+path = "src/lib.rs"
+
+[dependencies]
+# Workspace dependencies
+armoricore-keys = { path = "../armoricore-keys" }
+armoricore-types = { path = "../armoricore-types" }
+armoricore-config = { path = "../armoricore-config" }
+armoricore-logging = { path = "../armoricore-logging" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# RTP/SRTP
+# Using webrtc-rs as reference, but implementing our own for full control
+# For now, we'll implement basic SRTP based on RFC 3711
+ring = "0.17"  # For crypto operations (AES-GCM, HMAC-SHA1)
+hkdf = "0.12"  # For key derivation (HKDF-SHA256)
+aes-gcm = "0.10"  # For AES-GCM encryption
+sha2 = "0.10"  # For SHA-256
+
+# Networking
+bytes = "1.5"  # For efficient byte buffer handling
+tokio-util = { version = "0.7", features = ["codec"] }
+
+# Audio codec (Opus for VoIP)
+# Using audiopus for Opus encoding/decoding
+audiopus = "0.2"  # Opus codec bindings
+
+# Async utilities
+futures = "0.3"
+async-trait = { workspace = true }
+
+# Random number generation (for key generation)
+rand = "0.8"
+
+# Hex encoding (for ICE credentials and DTLS)
+hex = "0.4"
+
+# DTLS support (for RFC 6347)
+# Note: Full DTLS implementation would use rustls or similar
+# This is a basic structure for now
+
+[dev-dependencies]
+tokio-test = "0.4"
+hex = "0.4"  # For hex encoding in tests
+tempfile = "3.8"  # For temporary directories in tests
+rand = "0.8"  # For random key generation in tests

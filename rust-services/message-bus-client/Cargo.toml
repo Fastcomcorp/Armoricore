@@ -1,0 +1,36 @@
+[package]
+name = "message-bus-client"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+# Workspace dependencies
+armoricore-types = { path = "../armoricore-types" }
+armoricore-config = { path = "../armoricore-config" }
+
+# Async runtime
+tokio = { workspace = true }
+async-trait = { workspace = true }
+tokio-stream = "0.1"
+futures = "0.3"
+
+# Message bus clients
+async-nats = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Error handling
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+
+# Logging
+tracing = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+uuid = { workspace = true }
+

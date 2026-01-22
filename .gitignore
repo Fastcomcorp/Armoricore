@@ -1,0 +1,51 @@
+# Rust
+**/target/
+**/*.rs.bk
+Cargo.lock
+
+# Environment variables and credentials
+.env
+.env.local
+.env.*.local
+*.env
+**/.env
+rust-services/.env
+elixir_realtime/.env
+
+# Keys and certificates
+*.key
+*.pem
+*.p8
+*.cert
+*.crt
+priv/keys/*.key
+priv/keys/*.meta
+rust-services/keys/*.key
+rust-services/keys/*.meta
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Elixir (for future)
+_build/
+deps/
+*.beam
+*.plt
+erl_crash.dump
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS
+.DS_Store
+Thumbs.db
+

@@ -1,0 +1,34 @@
+[package]
+name = "live-ingest"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "live-ingest"
+path = "src/main.rs"
+
+[dependencies]
+message-bus-client = { path = "../message-bus-client" }
+armoricore-types = { path = "../armoricore-types" }
+armoricore-config = { path = "../armoricore-config" }
+armoricore-logging = { path = "../armoricore-logging" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+uuid = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+reqwest = { workspace = true }
+async-trait = { workspace = true }
+thiserror = { workspace = true }
+
+# RTMP protocol support
+rml_rtmp = "0.8"
+
+# Async networking
+tokio-util = { version = "0.7", features = ["codec"] }
+futures = "0.3"
+

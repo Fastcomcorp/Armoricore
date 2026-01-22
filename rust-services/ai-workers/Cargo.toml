@@ -1,0 +1,27 @@
+[package]
+name = "ai-workers"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "ai-workers"
+path = "src/main.rs"
+
+[dependencies]
+message-bus-client = { path = "../message-bus-client" }
+armoricore-types = { path = "../armoricore-types" }
+armoricore-config = { path = "../armoricore-config" }
+armoricore-logging = { path = "../armoricore-logging" }
+ai-connectors = { path = "../ai-connectors" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+futures = "0.3"
+tokio-stream = "0.1"
+reqwest = { workspace = true, features = ["json"] }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+

@@ -1,0 +1,22 @@
+[package]
+name = "armoricore-tests"
+version = "0.1.0"
+edition = "2021"
+
+[[test]]
+name = "media_processing_test"
+path = "integration/media_processing_test.rs"
+
+[[test]]
+name = "load_test"
+path = "load/load_test.rs"
+
+[dependencies]
+message-bus-client = { path = "../rust-services/message-bus-client" }
+armoricore-types = { path = "../rust-services/armoricore-types" }
+tokio = { version = "1.0", features = ["full"] }
+futures = "0.3"
+serde_json = "1.0"
+uuid = { version = "1.0", features = ["v4"] }
+tokio-stream = "0.1"
+

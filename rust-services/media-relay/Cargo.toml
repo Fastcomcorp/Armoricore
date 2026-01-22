@@ -1,0 +1,35 @@
+[package]
+name = "media-relay"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Media relay server for NAT traversal (TURN-like functionality)"
+
+[lib]
+name = "media_relay"
+path = "src/lib.rs"
+
+[dependencies]
+# Workspace dependencies
+tokio = { workspace = true, features = ["full"] }
+tracing = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+bytes = "1.5"
+
+# Networking
+tokio-util = { version = "0.7", features = ["codec"] }
+
+# Async utilities
+futures = "0.3"
+async-trait = { workspace = true }
+
+# Random number generation
+rand = "0.8"
+
+[dev-dependencies]
+tokio-test = "0.4"

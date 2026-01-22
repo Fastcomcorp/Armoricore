@@ -1,0 +1,165 @@
+# Fastcomcorp Commercial License Agreement
+
+**Version 1.0 - January 21, 2026**
+
+## Copyright Notice
+Copyright 2025-2026 Francisco F. Pinochet  
+Copyright 2026 Fastcomcorp, LLC
+
+## 1. Definitions
+
+**"Software"** shall mean the Armoricore communications platform, including all source code, documentation, and related materials provided in this repository.
+
+**"Personal Use"** shall mean use of the Software for non-commercial purposes by individuals for their own personal use, including but not limited to:
+- Personal communication and messaging
+- Educational and learning purposes
+- Non-profit research and development
+- Personal projects that do not generate revenue
+
+**"Commercial Use"** shall mean any use of the Software that is not Personal Use, including but not limited to:
+- Use in commercial products or services
+- Use in for-profit organizations or businesses
+- Use in applications that generate revenue (directly or indirectly)
+- Use in enterprise environments
+- Distribution, hosting, or offering the Software as a service
+- Integration into commercial software products
+- Use in government or military applications
+- Any use that provides competitive advantage or business value
+
+**"Licensee"** shall mean the individual or entity exercising permissions granted by this License.
+
+**"Licensor"** shall mean Fastcomcorp, LLC and Francisco F. Pinochet.
+
+## 2. Grant of License
+
+### 2.1 Personal Use License
+Subject to the terms and conditions of this License, Licensor hereby grants Licensee a worldwide, royalty-free, non-exclusive license to use, copy, modify, and distribute the Software for Personal Use only.
+
+### 2.2 Commercial Use License
+Commercial use of the Software requires a separate commercial license agreement with Licensor. Contact licensing@fastcomcorp.com to obtain a commercial license.
+
+## 3. Permitted Uses
+
+### 3.1 Personal Use Permissions
+For Personal Use, Licensee may:
+- Use the Software on any number of personal devices
+- Modify the Software for personal use
+- Create derivative works for personal use
+- Share modified versions with other individuals for personal use only
+
+### 3.2 Restrictions on Commercial Use
+Without a commercial license, Licensee may NOT:
+- Use the Software in any commercial product, service, or application
+- Distribute the Software (modified or unmodified) as part of a commercial offering
+- Host or provide the Software as a service to third parties
+- Use the Software in business operations or enterprise environments
+- Integrate the Software into commercial software products
+- Use the Software in applications that generate revenue
+
+## 4. Commercial Licensing Terms
+
+### 4.1 License Fees
+Commercial licenses are available with the following pricing structure:
+- **Small Business License**: $4,999/year (up to 100 users)
+- **Enterprise License**: $24,999/year (up to 1,000 users)
+- **Unlimited License**: $99,999/year (unlimited users)
+- **OEM/White-label License**: Custom pricing (contact for quote)
+
+### 4.2 Commercial License Features
+Commercial licenses include:
+- ✅ Full commercial usage rights
+- ✅ Priority technical support
+- ✅ Security updates and patches
+- ✅ Professional services and consulting
+- ✅ Custom development and integration
+- ✅ Legal indemnification
+- ✅ Training and documentation
+- ✅ SLA guarantees
+
+### 4.3 Evaluation Period
+Commercial evaluation licenses are available for 30 days. Contact licensing@fastcomcorp.com to begin evaluation.
+
+## 5. Attribution Requirements
+
+### 5.1 Personal Use Attribution
+When using the Software for Personal Use, Licensee must include the following attribution in any distributed copies or derivative works:
+
+```
+Copyright 2025-2026 Francisco F. Pinochet
+Copyright 2026 Fastcomcorp, LLC
+Licensed under Fastcomcorp Commercial License - Personal Use Only
+```
+
+### 5.2 Commercial Attribution
+Commercial licensees must include appropriate attribution as specified in their commercial license agreement.
+
+## 6. Intellectual Property
+
+### 6.1 Ownership
+Licensor retains all right, title, and interest in and to the Software, including all intellectual property rights therein.
+
+### 6.2 Trademarks
+This License does not grant permission to use the trade names, trademarks, service marks, or product names of Licensor, except as required for reasonable attribution.
+
+## 7. Warranty and Liability
+
+### 7.1 Disclaimer of Warranty
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+### 7.2 Limitation of Liability
+IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+### 7.3 Security Notice
+While the Software implements advanced security features, Licensor does not warrant that the Software will be free from vulnerabilities or that it will meet specific security requirements. Commercial licensees receive security updates and support.
+
+## 8. Termination
+
+### 8.1 Automatic Termination
+This License automatically terminates if Licensee violates any term herein.
+
+### 8.2 Commercial License Termination
+Commercial licenses may include additional termination provisions as specified in the commercial license agreement.
+
+## 9. Compliance and Enforcement
+
+### 9.1 License Compliance
+Licensee agrees to maintain records sufficient to demonstrate compliance with this License and to provide such records to Licensor upon request.
+
+### 9.2 Audit Rights
+Licensor reserves the right to audit Licensee's use of the Software to ensure compliance with this License.
+
+### 9.3 Enforcement
+Violations of this License may result in immediate termination and potential legal action.
+
+## 10. Governing Law
+
+This License shall be governed by and construed in accordance with the laws of the State of Delaware, USA, without regard to its conflict of law provisions.
+
+## 11. Contact Information
+
+### Commercial Licensing
+- **Email**: licensing@fastcomcorp.com
+- **Phone**: +1 (555) 123-LICENSE
+- **Website**: https://fastcomcorp.com/licensing
+
+### Security Issues
+- **Email**: security@fastcomcorp.com
+- **PGP Key**: https://fastcomcorp.com/security/pgp
+
+### General Support
+- **Documentation**: https://docs.fastcomcorp.com
+- **Community**: https://community.fastcomcorp.com
+
+## 12. Acceptance
+
+By using, copying, modifying, or distributing the Software, Licensee acknowledges that they have read, understood, and agree to be bound by the terms and conditions of this License.
+
+## 13. Updates to This License
+
+Licensor reserves the right to update this License at any time. Continued use of the Software after license updates constitutes acceptance of the new terms.
+
+---
+
+**Fastcomcorp, LLC**  
+**Committed to Secure Communications**  
+**January 21, 2026**

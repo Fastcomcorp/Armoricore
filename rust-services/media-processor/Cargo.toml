@@ -1,0 +1,69 @@
+[package]
+name = "media-processor"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[lib]
+name = "media_processor"
+path = "src/lib.rs"
+
+[[bin]]
+name = "media-processor"
+path = "src/main.rs"
+
+[dependencies]
+message-bus-client = { path = "../message-bus-client" }
+armoricore-types = { path = "../armoricore-types" }
+armoricore-config = { path = "../armoricore-config" }
+armoricore-logging = { path = "../armoricore-logging" }
+armoricore-keys = { path = "../armoricore-keys" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+futures = "0.3"
+tokio-stream = "0.1"
+uuid = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+serde_json = { workspace = true }
+
+# FFmpeg bindings (using command-line FFmpeg instead for reliability)
+# ffmpeg-next = "6.1"  # Optional: Use if you want Rust bindings
+
+# AWS S3 for object storage (Akamai-compatible)
+# Using rusoto_s3 for S3-compatible storage (works with Akamai)
+rusoto_core = { version = "0.48", default-features = false, features = ["rustls"] }
+rusoto_s3 = { version = "0.48", default-features = false, features = ["rustls"] }
+rusoto_credential = "0.48"
+
+# HTTP client for downloading/uploading
+reqwest = { workspace = true, features = ["stream"] }
+
+# HTTP server for health checks
+axum = { version = "0.7", features = ["tokio"] }
+
+# File system operations
+tempfile = "3.8"
+pathdiff = "0.2"
+
+# Magic byte detection for content-type validation
+infer = "0.15"
+
+# Encryption for content protection
+aes = "0.7"
+block-modes = "0.8"
+rand = "0.8"
+
+[dev-dependencies]
+tokio-test = "0.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "encoding_benchmarks"
+harness = false
+
+[[bench]]
+name = "simple_benchmark"
+harness = false
+
