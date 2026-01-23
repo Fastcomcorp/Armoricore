@@ -103,7 +103,6 @@ Armoricore undergoes regular security audits by independent third-party firms sp
 ### **Bug Bounty Program**
 We maintain an active bug bounty program for security researchers:
 - **Scope**: All Armoricore components and services
-- **Rewards**: Up to $10,000 for critical vulnerabilities
 - **Eligibility**: All security researchers worldwide
 - **Safe Harbor**: Legal protection for good-faith research
 
