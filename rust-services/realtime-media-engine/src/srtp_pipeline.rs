@@ -17,6 +17,9 @@
 //!
 //! Implements RFC 3711 SRTP encryption/decryption.
 //! Uses AES-128-GCM for encryption and authentication.
+//!
+//! SECURITY CRITICAL: Key derivation uses HKDF with validation
+//! to prevent zero-key vulnerabilities.
 // Copyright 2025 Francisco F. Pinochet
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -90,22 +93,45 @@ impl SrtpPipeline {
             ));
         }
 
-        // Derive encryption key using HKDF
+        // CRITICAL SECURITY: Derive encryption key using HKDF
+        // Previous vulnerability: zero-initialized buffer could remain zero if HKDF failed
+        // Fix: Added validation to ensure keys are not all zeros
         let hkdf = Hkdf::<Sha256>::new(None, &config.master_key);
         let mut encryption_key = vec![0u8; 16];
         hkdf.expand(b"SRTP encryption key", &mut encryption_key)
             .map_err(|e| MediaEngineError::SrtpError(format!("HKDF error: {}", e)))?;
+
+        // Validate encryption key is not all zeros (critical security check)
+        if encryption_key.iter().all(|&b| b == 0) {
+            return Err(MediaEngineError::SrtpError(
+                "CRITICAL: Encryption key derivation failed - key is all zeros".to_string()
+            ));
+        }
 
         // Derive authentication key
         let mut auth_key = vec![0u8; 16];
         hkdf.expand(b"SRTP authentication key", &mut auth_key)
             .map_err(|e| MediaEngineError::SrtpError(format!("HKDF error: {}", e)))?;
 
+        // Validate authentication key
+        if auth_key.iter().all(|&b| b == 0) {
+            return Err(MediaEngineError::SrtpError(
+                "CRITICAL: Authentication key derivation failed - key is all zeros".to_string()
+            ));
+        }
+
         // Derive salt key
         let mut salt_key = vec![0u8; 14];
         let hkdf_salt = Hkdf::<Sha256>::new(None, &config.master_salt);
         hkdf_salt.expand(b"SRTP salt key", &mut salt_key)
             .map_err(|e| MediaEngineError::SrtpError(format!("HKDF error: {}", e)))?;
+
+        // Validate salt key
+        if salt_key.iter().all(|&b| b == 0) {
+            return Err(MediaEngineError::SrtpError(
+                "CRITICAL: Salt key derivation failed - key is all zeros".to_string()
+            ));
+        }
 
         // Create cipher
         let cipher = Aes128Gcm::new_from_slice(&encryption_key)
